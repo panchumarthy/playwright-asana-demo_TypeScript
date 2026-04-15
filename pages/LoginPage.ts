@@ -1,21 +1,28 @@
+import { Page, Locator } from '@playwright/test';
+
 /**
  * Page Object for the Login page.
  * Encapsulates all selectors and actions related to authentication.
  */
-class LoginPage {
-  constructor(page) {
+export class LoginPage {
+  private readonly page: Page;
+  private readonly usernameInput: Locator;
+  private readonly passwordInput: Locator;
+  private readonly submitButton: Locator;
+
+  constructor(page: Page) {
     this.page = page;
     this.usernameInput = page.locator('#username');
     this.passwordInput = page.locator('#password');
     this.submitButton = page.locator('button[type="submit"]');
   }
 
-  async goto() {
+  async goto(): Promise<void> {
     await this.page.goto('https://animated-gingersnap-8cf7f2.netlify.app/');
     await this.page.waitForLoadState('networkidle');
   }
 
-  async login(username, password) {
+  async login(username: string, password: string): Promise<void> {
     await this.usernameInput.fill(username);
     await this.passwordInput.fill(password);
     await this.submitButton.click();
@@ -23,5 +30,3 @@ class LoginPage {
     await this.page.locator('nav').waitFor({ state: 'visible', timeout: 10_000 });
   }
 }
-
-module.exports = { LoginPage };

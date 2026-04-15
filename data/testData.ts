@@ -2,7 +2,16 @@
  * Centralized test data for all Playwright test cases.
  * Each entry drives a single test scenario without code duplication.
  */
-const testCases = [
+
+export interface TestCase {
+  id: string;
+  project: string;
+  task: string;
+  column: string;
+  tags: string[];
+}
+
+export const testCases: TestCase[] = [
   {
     id: "TC-01",
     project: "Web Application",
@@ -46,5 +55,3 @@ const testCases = [
     tags: ["Design"],
   },
 ];
-
-module.exports = { testCases };

@@ -1,20 +1,20 @@
 /**
  * Data-driven Playwright test suite for the Demo App (Asana-like board).
  *
- * All six test scenarios are driven from a single JSON dataset in
- * data/testData.js — adding a new scenario requires only a new data entry,
+ * All six test scenarios are driven from a single dataset in
+ * data/testData.ts — adding a new scenario requires only a new data entry,
  * not new test code.
  */
 
-const { test, expect } = require('@playwright/test');
-const { testCases } = require('../data/testData');
-const { LoginPage } = require('../pages/LoginPage');
-const { ProjectPage } = require('../pages/ProjectPage');
+import { test, expect } from '@playwright/test';
+import { testCases } from '../data/testData';
+import { LoginPage } from '../pages/LoginPage';
+import { ProjectPage } from '../pages/ProjectPage';
 
 const CREDENTIALS = {
   username: 'admin',
   password: 'password123',
-};
+} as const;
 
 for (const { id, project, task, column, tags } of testCases) {
   test(`[${id}] "${task}" appears in "${column}" column of "${project}" with correct tags`, async ({ page }) => {
@@ -30,9 +30,7 @@ for (const { id, project, task, column, tags } of testCases) {
 
     // ── Step 3: Locate the task card inside the expected column ────────────
     const card = projectPage.getTaskCard(column, task);
-    await expect(card).toBeVisible({
-      timeout: 10_000,
-    });
+    await expect(card).toBeVisible({ timeout: 10_000 });
 
     // ── Step 4: Verify every expected tag is present on the card ──────────
     const actualTags = await projectPage.getTagsOnCard(card);

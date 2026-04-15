@@ -1,9 +1,7 @@
-// @ts-check
-const { defineConfig, devices } = require('@playwright/test');
+import { defineConfig, devices } from '@playwright/test';
 
-module.exports = defineConfig({
+export default defineConfig({
   testDir: './tests',
-  /* Run each test in isolation with a fresh browser context */
   fullyParallel: false,
   retries: 1,
   reporter: [['html', { open: 'never' }], ['list']],
