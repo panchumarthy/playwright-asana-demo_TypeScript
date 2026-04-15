@@ -1,0 +1,17 @@
+{
+  "name": "playwright-asana-demo",
+  "version": "1.0.0",
+  "description": "Data-driven Playwright test suite for the Asana Demo App",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "report": "npx playwright show-report"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.59.1"
+  }
+}

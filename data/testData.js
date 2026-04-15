@@ -1,0 +1,50 @@
+/**
+ * Centralized test data for all Playwright test cases.
+ * Each entry drives a single test scenario without code duplication.
+ */
+const testCases = [
+  {
+    id: "TC-01",
+    project: "Web Application",
+    task: "Implement user authentication",
+    column: "To Do",
+    tags: ["Feature", "High Priority"],
+  },
+  {
+    id: "TC-02",
+    project: "Web Application",
+    task: "Fix navigation bug",
+    column: "To Do",
+    tags: ["Bug"],
+  },
+  {
+    id: "TC-03",
+    project: "Web Application",
+    task: "Design system updates",
+    column: "In Progress",
+    tags: ["Design"],
+  },
+  {
+    id: "TC-04",
+    project: "Mobile Application",
+    task: "Push notification system",
+    column: "To Do",
+    tags: ["Feature"],
+  },
+  {
+    id: "TC-05",
+    project: "Mobile Application",
+    task: "Offline mode",
+    column: "In Progress",
+    tags: ["Feature", "High Priority"],
+  },
+  {
+    id: "TC-06",
+    project: "Mobile Application",
+    task: "App icon design",
+    column: "Done",
+    tags: ["Design"],
+  },
+];
+
+module.exports = { testCases };
