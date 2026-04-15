@@ -1,4 +1,4 @@
-# Playwright Asana Demo — JavaScript
+# Playwright Asana Demo — TypeScript
 
 A data-driven Playwright test suite that automates and validates a Kanban-style project management board ([Demo App](https://animated-gingersnap-8cf7f2.netlify.app/)).
 
@@ -8,13 +8,14 @@ A data-driven Playwright test suite that automates and validates a Kanban-style 
 
 ```
 ├── data/
-│   └── testData.js        # All test scenarios as a JSON array
+│   └── testData.ts        # All test scenarios as a typed array (TestCase interface)
 ├── pages/
-│   ├── LoginPage.js       # Page Object — login form
-│   └── ProjectPage.js     # Page Object — board navigation & assertions
+│   ├── LoginPage.ts       # Page Object — login form
+│   └── ProjectPage.ts     # Page Object — board navigation & assertions
 ├── tests/
-│   └── board.spec.js      # Single data-driven test loop
-├── playwright.config.js   # Playwright configuration
+│   └── board.spec.ts      # Single data-driven test loop
+├── playwright.config.ts   # Playwright configuration
+├── tsconfig.json          # TypeScript configuration
 └── package.json
 ```
 
@@ -22,10 +23,18 @@ A data-driven Playwright test suite that automates and validates a Kanban-style 
 
 ## How It Works (Data-Driven Design)
 
-All 6 test scenarios live in `data/testData.js` as a plain JSON array:
+All 6 test scenarios live in `data/testData.ts` as a strongly-typed array:
 
-```js
-const testCases = [
+```ts
+export interface TestCase {
+  id: string;
+  project: string;
+  task: string;
+  column: string;
+  tags: string[];
+}
+
+export const testCases: TestCase[] = [
   {
     id: "TC-01",
     project: "Web Application",
@@ -37,7 +46,7 @@ const testCases = [
 ];
 ```
 
-`tests/board.spec.js` loops over this array and generates one test per entry — **no repeated test code**. Adding a new scenario only requires a new object in `testData.js`.
+`tests/board.spec.ts` loops over this array and generates one test per entry — **no repeated test code**. Adding a new scenario only requires a new object in `testData.ts`.
 
 ---
 
@@ -86,5 +95,5 @@ npm run report
 ## Tech Stack
 
 - [Playwright](https://playwright.dev/) — browser automation
-- JavaScript (CommonJS)
+- TypeScript — type-safe test code
 - Page Object Model pattern
