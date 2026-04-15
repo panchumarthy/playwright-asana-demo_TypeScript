@@ -5,7 +5,7 @@
   "scripts": {
     "test": "npx playwright test",
     "test:headed": "npx playwright test --headed",
-    "report": "npx playwright show-report"
+    "report": "npx playwright show-report --port 9400"
   },
   "keywords": [],
   "author": "",

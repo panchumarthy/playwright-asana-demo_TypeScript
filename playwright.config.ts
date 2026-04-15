@@ -10,6 +10,9 @@ export default defineConfig({
     headless: true,
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
+    launchOptions: {
+      args: ['--window-position=0,0'],
+    },
   },
   projects: [
     {
